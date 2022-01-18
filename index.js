@@ -5,10 +5,7 @@ const generateMarkdown = require;
 
 
 // Call Prompt.
-function init() {
-
-    inquirer
-        .prompt([
+const questions = [
             {
                 type: 'input',
                 message: 'What is your Project Title?',
@@ -54,25 +51,31 @@ function init() {
                 type: 'input',
                 message: 'What kind of license do you want?',
                 name: 'license',
-                choices: ['MIT','Apache 2.0', 'GNU GPL v3', 'Eclipse 1.0', 'None']
+                choices: ['MIT', 'Apache 2.0', 'GNU GPL v3', 'Eclipse 1.0', 'None']
             },
-        ])
-        .then((response) => {
-            writeToFile('Readme-proj.md', reponse);
+        ];
+
+    // Takes user input, Generates README markdown and writes a new file.
+    function writeToFile(fileName, data) {
+        fs.witeFile(
+            fileName,
+            data,
+            function(err){
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('Successfully made your README.md')
+                }
+            });
+    }
+    function init() {
+        inquirer.prompt(questions).then((answers) => {
+            console.log(answers);
+            const readMeData = generateMarkdown(answers);
+            writeToFile("README.md", readMeData)
         });
+    };
 
-        // Takes user input, Generates README markdown and writes a new file.
-        function writeToFile(fileName, data) {
-            console.log(data);
-            let readMeText = generateMarkdown(data);
-
-            fs.witeFile(
-                fileName,
-                readMeText,
-                (err) => (err ? console.log(err) : console.log('Successfuly created ' + fileName + '!'))
-            );
-        }
-}
 
 // Function call to initialize App.
 init();
