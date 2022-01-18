@@ -17,7 +17,7 @@ function renderLicenseBadge(license) {
 function renderLicenseLink(license) {
   if (license === 'MIT') {
     return "https://choosealicense.com/licenses/mit/"
-  }else if (license === 'GPL') {
+  } else if (license === 'GPL') {
     return "https://choosealicense.com/licenses/gpl-3.0/"
   } else if (license === 'Apache') {
     return "https://choosealicense.com/licenses/apache-2.0/"
@@ -37,26 +37,34 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
-[![License Badge](${renderLicenseBadge(data.license)})](${renderLicenseLink(data.license)})
-## Table of Contents
+
+  [![License Badge](${renderLicenseBadge(data.license)})](${renderLicenseLink(data.license)})
+
+  ## Table of Contents
 - [Description](#Description)
 -[Installation](#Installations)
 -[Usage](#Usage)
 -[Tests](#Tests)
 -[License](#License)
 -[Questions](#Questions)
+
 ## Description
 ${data.description}
+
 ## Installations
 ${data.installation}
+
 ## Usage
 ${data.usage}
+
 ## Tests
 ${data.tests}
+
 ## License
 [![License Badge](${renderLicenseBadge(data.license)})](${renderLicenseLink(data.license)})
 </br>
 This application uses ${data.license} license.
+
 ## Questions
 If you have any questions please dont hesitate to contact me at [email](mailto:${data.email})
 `;
