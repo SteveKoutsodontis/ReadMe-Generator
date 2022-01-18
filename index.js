@@ -70,7 +70,7 @@ const questions = [
         inquirer.prompt(questions).then((answers) => {
             console.log(answers);
             var readMeData = generateMarkdown(answers);
-            writeToFile("README.md", readMeData)
+            writeToFile("./output/README.md", readMeData)
         });
     };
 
